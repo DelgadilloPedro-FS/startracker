@@ -11,16 +11,16 @@ module.exports = {
           description:
             "Our star, a yellow dwarf at the center of the solar system",
             galaxyId: 1,
-          createdAt,
-          updatedAt,
+          createdAt:new Date(),
+          updatedAt:new Date(),
         },
         {
           name: "Proxima Centauri",
           size: 705,
           description: "The closest star to the Sun, a red dwarf",
           galaxyId: 1,
-          createdAt,
-          updatedAt,
+          createdAt:new Date(),
+          updatedAt:new Date(),
         },
       ],{});
   },
