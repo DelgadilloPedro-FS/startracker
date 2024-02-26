@@ -1,55 +1,79 @@
-const { Galaxy, Star, Planet } = require("../models/index");
+// Import the Galaxy model
+const { Galaxy } = require('../models')
 
 // Show all resources
 const index = async (req, res) => {
-  const galaxies = await Galaxy.findAll({ include: {
-    model: Star,
-    include: {
-      model: Planet,
-      through: {attributes: []}
-    }
-  }});
   // Respond with an array and 2xx status code
-  res.status(200).json(galaxies);
+  try {
+    const galaxies = await Galaxy.findAll()
+    res.status(200).json(galaxies)
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
 }
 
 // Show resource
 const show = async (req, res) => {
-  const { id } = req.params;
-  const galaxy = await Galaxy.findOne({ where: { id }, include: {
-    model: Star,
-    include: {
-      model: Planet,
-      through: {attributes: []}
-    }
-  }});
   // Respond with a single object and 2xx code
-  res.status(200).json(galaxy)
+  const { id } = req.params
+  try {
+    const galaxy = await Galaxy.findByPk(id)
+    if (!galaxy) {
+      res.status(404).json({ error: 'Galaxy not found' })
+    } else {
+      res.status(200).json(galaxy)
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
 }
 
 // Create a new resource
 const create = async (req, res) => {
-  const { body } = req;
-  await Galaxy.create(body);
   // Issue a redirect with a success 2xx code
-  res.redirect(`/galaxies`, 201)
+  try {
+    const newGalaxy = await Galaxy.create(req.body)
+    res.status(201).json(newGalaxy)
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
 }
 
 // Update an existing resource
 const update = async (req, res) => {
-  const { body } = req;
-  const { id } = req.params;
-  await Galaxy.update(body, { where: { id }});
   // Respond with a single resource and 2xx code
-  res.status(200).json(`/galaxies/${req.params.id}`, )
+  const { id } = req.params
+  try {
+    const [updated] = await Galaxy.update(req.body, {
+      where: { id: id }
+    })
+    if (updated) {
+      const updatedGalaxy = await Galaxy.findByPk(id)
+      res.status(200).json(updatedGalaxy)
+    } else {
+      res.status(404).json({ error: 'Galaxy not found' })
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
 }
 
 // Remove a single resource
 const remove = async (req, res) => {
-  const { id } = req.params;
-  await Galaxy.destroy({ where: { id }});
   // Respond with a 2xx status code and bool
-  res.status(204).json(true)
+  const { id } = req.params
+  try {
+    const deleted = await Galaxy.destroy({
+      where: { id: id }
+    })
+    if (deleted) {
+      res.status(204).end()
+    } else {
+      res.status(404).json({ error: 'Galaxy not found' })
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
 }
 
 // Export all controller actions
