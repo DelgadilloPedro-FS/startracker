@@ -9,9 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.Planet.belongsToMany(models.Star, {
-        through: models.StarsPlanets,
-      });
+     Planet.belongsToMany(models.Star, {through: 'StarsPlanets'});
     }
   }
   Planet.init(
