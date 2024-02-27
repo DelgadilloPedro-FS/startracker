@@ -4,6 +4,10 @@ const express = require(`express`);
 // Create a new Express instance called "app"
 const app = express();
 
+
+//middleware
+app.use(express.json())
+
 // Load in our RESTful routers
 const routers = require("./app/routers/index.js");
 

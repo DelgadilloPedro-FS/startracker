@@ -67,7 +67,7 @@ const remove = async (req, res) => {
       where: { id: id }
     })
     if (deleted) {
-      res.status(204).end()
+      return res.status(201).json({ success: true });
     } else {
       res.status(404).json({ error: 'Galaxy not found' })
     }
