@@ -18,9 +18,9 @@ public/uploads/planets/*
 node_modules
 
 # Docker storage
-app/var/*
-!app/var/.gitkeep
-/app/var/
+# app/var/*
+# !app/var/.gitkeep
+# /app/var/
 
 #mac
 .DS_Store
