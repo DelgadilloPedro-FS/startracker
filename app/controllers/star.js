@@ -1,6 +1,8 @@
 // Import the Star model
 const { Star } = require('../models')
 
+
+
 // Show all resources
 const index = async (req, res) => {
   // Respond with an array and 2xx status code
@@ -67,7 +69,7 @@ const remove = async (req, res) => {
       where: { id: id }
     })
     if (deleted) {
-      res.status(204).end()
+      return res.status(201).json({ success: true });
     } else {
       res.status(404).json({ error: 'Star not found' })
     }

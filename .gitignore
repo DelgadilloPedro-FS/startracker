@@ -12,12 +12,16 @@ public/uploads/planets/*
 !public/uploads/galaxies/.gitkeep
 !public/uploads/planets/.gitkeep
 
+/.idea
+
 # Node modules
 node_modules
 
 # Docker storage
-var/*
-!var/.gitkeep
+app/var/*
+!app/var/.gitkeep
+/app/var/
 
 #mac
 .DS_Store
+

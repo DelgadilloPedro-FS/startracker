@@ -31,6 +31,7 @@ const show = async (req, res) => {
 // Create a new resource
 const create = async (req, res) => {
   // Issue a redirect with a success 2xx code
+  console.log(req)
   try {
     const newPlanet = await Planet.create(req.body)
     res.status(201).json(newPlanet)
@@ -67,7 +68,7 @@ const remove = async (req, res) => {
       where: { id: id }
     })
     if (deleted) {
-      res.status(204).end()
+      return res.status(201).json({ success: true });
     } else {
       res.status(404).json({ error: 'Planet not found' })
     }
