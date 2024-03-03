@@ -6,7 +6,10 @@ const index = async (req, res) => {
   // Respond with an array and 2xx status code
   try {
     const planets = await Planet.findAll()
-    res.status(200).json(planets)
+    res.status(200).render('views/Planet/index.html.twig', {
+      title: 'Planets',
+      planets: planets
+    });
   } catch (error) {
     res.status(500).json({ error: error.message })
   }

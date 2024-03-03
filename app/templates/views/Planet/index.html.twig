@@ -1,0 +1,30 @@
+<h2>Planet</h2>
+
+{% extends "layouts/base.html.twig" %}
+
+{% block app %}
+
+<h2>{{title}}</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for planet in planets %}
+        <tr>
+            <td>{{planet.id}}</td>
+            <td>{{planet.Name}}</td>
+            <td>{{planet.Size}}</td>
+            <td>{{planet.Description}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
