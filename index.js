@@ -13,10 +13,6 @@ app.use(fileUpload());
 const routers = require("./routers/index.js");
 
 // Configure template engine
-Twig.extend((Twig) => {
-  // Enable async extensions
-  Twig.exports.extendAsync = true;
-});
 app.set("view engine", "twig");
 app.set("views", `${__dirname}/templates`);
 
