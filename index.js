@@ -16,6 +16,9 @@ const routers = require("./routers/index.js");
 app.set("view engine", "twig");
 app.set("views", `${__dirname}/templates`);
 
+//configure static
+app.use(express.static(`${__dirname}/public`));
+
 // Home page welcome
 app.get("/", (req, res) => {
   res.status(200).render(`views/Default/home.html.twig`);

@@ -12,8 +12,8 @@ router.get(`/`, planetCtlr.index);
 router.post(`/`, planetCtlr.create);
 router.get(`/create`, planetCtlr.form);
 router.get(`/:id`, planetCtlr.show);
-router.put(`/:id`, planetCtlr.update);
-router.delete(`/:id`, planetCtlr.remove);
+router.put(`/:id/update`, planetCtlr.update);
+router.post(`/:id/delete`, planetCtlr.remove);
 
 // export "router"
 module.exports = router;

@@ -15,9 +15,9 @@
       <a href="/planets/{{ planet.id }}/edit" class="inline-flex items-center px-4 py-2 bg-blue-500 text-white hover:bg-blue-700 rounded-md">
         <button type="button">Edit</button>
       </a>
-      <a href="/planets/{{ planet.id }}/delete" class="inline-flex items-center px-4 py-2 bg-red-500 text-white hover:bg-red-700 rounded-md">
-        <button type="button">Delete</button>
-      </a>
+      <form method="POST" action="/planets/{{ planet.id }}/delete" class="inline-flex items-center px-4 py-2 bg-red-500 text-white hover:bg-red-700 rounded-md">
+        <button type="submit">Delete</button>
+      </form>
     </div>
   </div>
   <div class="w-full md:w-1/2 text-center">
