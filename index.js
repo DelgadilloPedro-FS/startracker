@@ -4,19 +4,17 @@ const express = require(`express`);
 // Create a new Express instance called "app"
 const app = express();
 
-
 //middleware
 app.use(express.json());
-const fileUpload = require('express-fileupload');
+const fileUpload = require("express-fileupload");
 app.use(fileUpload());
 
 // Load in our RESTful routers
 const routers = require("./routers/index.js");
 
-// Configure template engine 
-app.set('view engine', 'twig');
-app.set('views', `${__dirname}/templates`);
-
+// Configure template engine
+app.set("view engine", "twig");
+app.set("views", `${__dirname}/templates`);
 
 // Home page welcome
 app.get("/", (req, res) => {
