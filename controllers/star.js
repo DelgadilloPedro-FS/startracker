@@ -25,7 +25,7 @@ const index = async (req, res) => {
     return;
   }
 
-  res.status(200).render("views/Star/stars.html.twig", {
+  res.status(200).render("views/Star/index.html.twig", {
     stars,
   });
 };

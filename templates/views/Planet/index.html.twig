@@ -1,15 +1,18 @@
-<h2>Planet</h2>
+<h2 class="text-3xl font-bold text-center mb-8">Planet</h2>
 
 {% extends "layouts/base.html.twig" %}
 
 {% block app %}
-    <div >
-        <h1>List of Planets</h1>
-        <a href="/planets/create">
-            <button type="button">Add New Planet</button>
-        </a>
-    </div>
+  <div class="flex justify-between w-full mb-4 p-4" >
+    <h1 class="text-2xl font-bold">List of Planets</h1>
+    <a href="/planets/create" class="inline-flex items-center px-4 py-2 bg-green-500 text-white hover:bg-green-700 rounded-md">
+      <button type="button">Add New Planet</button>
+    </a>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     {% for planet in planets %}
-        {% include 'partials/_planet.html.twig' with planet %}
+      {% include 'partials/_planet.html.twig' with planet %}
     {% endfor %}
+  </div>
+
 {% endblock %}
