@@ -1,0 +1,15 @@
+<h2>Planet</h2>
+
+{% extends "layouts/base.html.twig" %}
+
+{% block app %}
+    <div >
+        <h1>List of Planets</h1>
+        <a href="/planets/create">
+            <button type="button">Add New Planet</button>
+        </a>
+    </div>
+    {% for planet in planets %}
+        {% include 'partials/_planet.html.twig' with planet %}
+    {% endfor %}
+{% endblock %}

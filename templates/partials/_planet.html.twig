@@ -1,0 +1,29 @@
+<section>
+  <div>
+    <h2>{{planet.Name}}</h2>
+    <h3>Size: {{planet.Size}}</h3>
+    <h3>Description: {{planet.Description}}</h3>
+    <h3>
+      Belongs to these stars:
+      <ul>
+        {% for star in planet.Stars %}
+        <li>{{star.Name}}</li>
+        {% endfor %}
+      </ul>
+    </h3>
+    <div>
+      <a href="/planets/{{planet.id}}/edit">
+        <button type="button">Edit</button>
+      </a>
+      <a href="/planets/{{planet.id}}/delete">
+        <button type="button">Delete</button>
+      </a>
+    </div>
+  </div>
+
+  <div>
+    {% if planet.extension is not null and planet.extension != "" %}
+    <img src="{{planet.id}}{{planet.extension}}" />
+    {% endif %}
+  </div>
+</section>
