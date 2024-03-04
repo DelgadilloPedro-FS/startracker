@@ -1,0 +1,39 @@
+<section class="flex flex-col justify-between items-center px-4 py-8">
+  <div class="w-full">
+    <h2 class="text-2xl font-bold mb-4">{{ star.Name }}</h2>
+    <div class="flex flex-col space-y-2 mb-4">
+      <p class="text-gray-600">Size: {{ star.Size }}</p>
+      <p class="text-gray-600">{{ star.Description }}</p>
+      {% if star.Galaxy is defined and star.Galaxy.id is defined %}
+      <p class="text-gray-600">Belongs to the {{ star.Galaxy.name }} galaxy.</p>
+      {% else %}
+      <p class="text-gray-600">Belongs to no galaxy.</p>
+      {% endif %}
+      {% if star.Planets is defined and star.Planets.length > 0 %}
+      <div>
+        <h3 class="font-bold mb-2">Planets it has:</h3>
+        <ul class="list-disc space-y-1 text-gray-600">
+          {% for planet in star.Planets %}
+          <li>{{ planet.Name }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% else %}
+      <p class="text-gray-600">Does not have any planets.</p>
+      {% endif %}
+    </div>
+    <div class="flex justify-between">
+      <a href="/stars/{{ star.id }}/edit" class="inline-flex items-center px-4 py-2 bg-blue-500 text-white hover:bg-blue-700 rounded-md">
+        <button type="button">Edit</button>
+      </a>
+      <a href="/stars/{{ star.id }}/delete" class="inline-flex items-center px-4 py-2 bg-red-500 text-white hover:bg-red-700 rounded-md">
+        <button type="button">Delete</button>
+      </a>
+    </div>
+  </div>
+  <div class="w-full text-center">
+    {% if star.extension is not null and star.extension != "" %}
+    <img src="{{ star.id }}{{ star.extension }}" class="mx-auto max-w-full h-auto rounded-md">
+    {% endif %}
+  </div>
+</section>

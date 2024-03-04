@@ -17,7 +17,7 @@ const index = async (req, res) => {
     return;
   }
 
-  res.status(200).render("views/Galaxy/galaxies.html.twig", {
+  res.status(200).render("views/Galaxy/index.html.twig", {
     galaxies,
   });
 };

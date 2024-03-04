@@ -15,7 +15,40 @@ module.exports = {
     await queryInterface.bulkInsert('StarsPlanets', [{
       starId: 1,
       planetId: 1,
-    }], {});
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      starId: 1,
+      planetId: 2,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      starId: 1,
+      planetId: 3,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      starId: 1,
+      planetId: 4,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      starId: 1,
+      planetId: 5,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      starId: 1,
+      planetId: 6,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
+      starId: 1,
+      planetId: 7,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+  ], {});
   },
 
   async down (queryInterface, Sequelize) {
