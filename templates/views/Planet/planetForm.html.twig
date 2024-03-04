@@ -1,7 +1,7 @@
 {% extends "layouts/base.html.twig" %}
 
 {% block app %}
-    <h1 class="text-center">
+    <h1 >
         {% if planet is defined %}
             Edit
         {% else %}
@@ -9,7 +9,7 @@
         {% endif %}
         Planet Form
     </h1>
-    <form class="entry flex align-items-center justify-content-around" method="POST" enctype="multipart/form-data"
+    <form method="POST" enctype="multipart/form-data"
         action="/planets{% if planet is defined %}/{{planet.id}}{% endif %}">
         <div>
             <div>
