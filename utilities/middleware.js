@@ -1,7 +1,7 @@
 const util = require("util");
 const path = require("path");
 
-// Load in our Sequelize models
+// Load in models
 const { Planet, Star, Galaxy } = require('../models')
 
 function checkAcceptHeader(req, res, next) {
@@ -9,16 +9,15 @@ function checkAcceptHeader(req, res, next) {
     if (acceptHeader?.indexOf("application/json") >= 0) {
         res.locals.asJson = true;
     }
-    next();
+    next(); 
 }
 
-async function uploadImage(req, res, next) {
+function uploadImage(req, res, next) {
     // Define the absolute final file path for this image
     let uploadPath = `${__dirname}/../public/uploads/`;
     let id;
     let model;
 
-    // If the previous middleware did not pass us an id then bail
     if (req.planetId) {
         id = req.planetId;
         uploadPath += `planets/images/%s%s`;
@@ -27,36 +26,40 @@ async function uploadImage(req, res, next) {
         id = req.starId;
         uploadPath += `stars/images/%s%s`;
         model = Star;
-
     } else if (req.galaxyId) {
         id = req.galaxyId;
         uploadPath += `galaxies/images/%s%s`;
         model = Galaxy;
     } else {
-        return;
+        return next();
     }
 
     const files = req.files || [];
 
     // Check to see if there are any files to upload
     if (Object.keys(files).length > 0) {
-        // Get the extension from the incoming file (ie: .png,.jpg,.gif)
         const extension = path.extname(req.files.image.name);
-        // Render the final file path based off the imageId and file extension
         uploadPath = util.format(uploadPath, id, extension);
         
-        // Perform the move/mv operation that moves the file from a temp directory to our final path
-        return await req.files.image.mv(uploadPath)
-        // Update the model with the new file extension uploaded
-        .then(async () => await model.update(
+        req.files.image.mv(uploadPath, async (err) => {
+            if (err) {
+                console.error(err);
+                // Handle error, if any
+                return res.status(500).json({ error: 'Internal Server Error' });
+            }
+            // Update the model with the new file extension uploaded
+            await model.update(
                 { extension },
                 { where: { id: Number(id) } }
-            )
-        )
+            );
+            next();
+        });
+    } else {
+        next();
     }
 }
 
 module.exports = {
     checkAcceptHeader,
     uploadImage
-}
+};
