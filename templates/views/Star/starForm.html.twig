@@ -15,23 +15,23 @@
         <div class="flex-col justify-content-center">
             <div class="flex justify-content-between">
                 <label for="name">Name</label>
-                <input id="name" name="name" type="text"
+                <input id="Name" name="Name" type="text"
                 {% if star is defined %}
-                    value="{{star.name}}"
+                    value="{{star.Name}}"
                 {% endif %}/>
             </div>
 
             <div class="flex justify-content-between">
-                <label for="size">Size</label>
-                <input id="size" name="size" type="number"
+                <label for="Size">Size</label>
+                <input id="Size" name="Size" type="number"
                 {% if star is defined %}
-                    value="{{star.size}}"
+                    value="{{star.Size}}"
                 {% endif %}/>
             </div>
 
             <div class="flex justify-content-between align-items-center">
-                <label for="description">Description</label>
-                <textarea id="description" name="description"/>{% if star is defined %}{{star.description}}{% endif %}</textarea>
+                <label for="Description">Description</label>
+                <textarea id="Description" name="Description"/>{% if star is defined %}{{star.Description}}{% endif %}</textarea>
             </div>
 
             {% if galaxies is defined and galaxies.length > 0 %}

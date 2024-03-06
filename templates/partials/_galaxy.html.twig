@@ -1,0 +1,37 @@
+<section class="flex flex-col md:flex-row justify-between items-center px-4 py-8">
+  <div class="w-full md:w-1/2 px-4">
+    <h2 class="text-2xl font-bold mb-4">{{ galaxy.Name }}</h2>
+    <div class="space-y-4">
+      <p class="text-lg text-gray-600">Size: {{ galaxy.Size }}</p>
+      <p class="text-lg text-gray-600">Description: {{ galaxy.Description }}</p>
+      
+      {% if galaxy.Stars is defined and galaxy.Stars.length > 0 %}
+      <div class="mb-4">
+        <h3 class="font-bold mb-2">Stars it has:</h3>
+        <ul class="list-disc space-y-1 text-gray-600">
+          {% for star in galaxy.Stars %}
+          <li>{{ star.Name }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% else %}
+      <p class="text-lg text-gray-600">Does not have any stars.</p>
+      {% endif %}
+
+      <div class="flex justify-between">
+        <a href="/galaxies/{{ galaxy.id }}/edit" class="inline-flex items-center px-4 py-2 bg-blue-500 text-white hover:bg-blue-700 rounded-md">
+          <button type="button">Edit</button>
+        </a>
+        <a href="/galaxies/{{ galaxy.id }}/delete" class="inline-flex items-center px-4 py-2 bg-red-500 text-white hover:bg-red-700 rounded-md">
+          <button type="button">Delete</button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full md:w-1/2 text-center">
+    {% if galaxy.extension is not null and galaxy.extension != "" %}
+      <img src="{{ galaxy.id }}{{ galaxy.extension }}" class="mx-auto max-w-full h-auto rounded-md">
+    {% endif %}
+  </div>
+</section>

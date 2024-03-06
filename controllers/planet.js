@@ -77,15 +77,15 @@ const create = async (req, res, next) => {
   await planet.addStars(starIds);
 
   req.planetId = planet.id;
-  next();
-
+  
   if (res.locals.asJson) {
     // Issue a redirect with a success 2xx code
     res.redirect(201, "/planets");
     return;
   }
-
+  
   res.redirect(303, `/planets`);
+  return next();
 };
 
 // Update an existing resource
@@ -104,8 +104,6 @@ const update = async (req, res, next) => {
   });
 
   req.planetId = id;
-  next();
-
   if (res.locals.asJson) {
     // Respond with a single resource and 2xx code
     res.status(200).json(`/planets/${req.params.id}`);
@@ -113,6 +111,7 @@ const update = async (req, res, next) => {
   }
 
   res.redirect(303, `/planets`);
+  return next();
 };
 
 // Remove a single resource

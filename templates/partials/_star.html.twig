@@ -5,7 +5,7 @@
       <p class="text-gray-600">Size: {{ star.Size }}</p>
       <p class="text-gray-600">{{ star.Description }}</p>
       {% if star.Galaxy is defined and star.Galaxy.id is defined %}
-      <p class="text-gray-600">Belongs to the {{ star.Galaxy.name }} galaxy.</p>
+      <p class="text-gray-600">Belongs to the {{ star.Galaxy.Name }} galaxy.</p>
       {% else %}
       <p class="text-gray-600">Belongs to no galaxy.</p>
       {% endif %}

@@ -13,24 +13,24 @@
         action="/galaxies{% if galaxy is defined %}/{{galaxy.id}}{% endif %}">
         <div class="flex-col justify-content-center">
             <div class="flex justify-content-between">
-                <label for="name">Name</label>
-                <input id="name" name="name" type="text"
+                <label for="Name">Name</label>
+                <input id="Name" name="Name" type="text"
                 {% if galaxy is defined %}
-                    value="{{galaxy.name}}"
+                    value="{{galaxy.Name}}"
                 {% endif %}/>
             </div>
 
             <div class="flex justify-content-between">
-                <label for="size">Size</label>
-                <input id="size" name="size" type="number"
+                <label for="Size">Size</label>
+                <input id="Size" Name="Size" type="number"
                 {% if galaxy is defined %}
-                    value="{{galaxy.size}}"
+                    value="{{galaxy.Size}}"
                 {% endif %}/>
             </div>
 
             <div class="flex justify-content-between align-items-center">
-                <label for="description">Description</label>
-                <textarea id="description" name="description"/>{% if galaxy is defined %}{{galaxy.description}}{% endif %}</textarea>
+                <label for="Description">Description</label>
+                <textarea id="Description" name="Description"/>{% if galaxy is defined %}{{galaxy.Description}}{% endif %}</textarea>
             </div>
 
             <button class="align-self-center" type="submit">Submit</button>

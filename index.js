@@ -6,8 +6,11 @@ const app = express();
 
 //middleware
 app.use(express.json());
+// enabling file uploads
 const fileUpload = require("express-fileupload");
 app.use(fileUpload());
+
+app.use(express.static(`${__dirname}/public`));
 
 // Load in our RESTful routers
 const routers = require("./routers/index.js");
@@ -15,9 +18,6 @@ const routers = require("./routers/index.js");
 // Configure template engine
 app.set("view engine", "twig");
 app.set("views", `${__dirname}/templates`);
-
-//configure static
-app.use(express.static(`${__dirname}/public`));
 
 // Home page welcome
 app.get("/", (req, res) => {
