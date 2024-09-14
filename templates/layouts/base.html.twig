@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/stylesheets/app.css"/>
+    <title>spacetracker</title>
+  </head>
+  <body class="flex-col justify-content-between align-items-center">
+    {% include "partials/_header.html.twig" %}
+    <main id="app">
+        {% block app%}{% endblock %}
+    </main>
+    {% include "partials/_footer.html.twig" %}
+  </body>
+</html>

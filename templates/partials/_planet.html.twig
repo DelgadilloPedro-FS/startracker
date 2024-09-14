@@ -1,0 +1,28 @@
+<section class="flex flex-wrap justify-between items-center px-4 py-8">
+  <div class="w-full md:w-1/2 px-4">
+    <h2 class="text-2xl font-bold mb-4">{{ planet.Name }}</h2>
+    <div class="space-y-4">
+      <p class="text-gray-600">Size: {{ planet.Size }}</p>
+      <p class="text-gray-600">{{ planet.Description }}</p>
+      <h3 class="font-bold mb-2">Belongs to these stars:</h3>
+      <ul class="list-disc space-y-1 text-gray-600">
+        {% for star in planet.Stars %}
+        <li>{{ star.Name }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="flex justify-between mt-4">
+      <form method="GET" action="/planets/{{ planet.id }}/update" class="inline-flex items-center px-4 py-2 bg-blue-500 text-white hover:bg-blue-700 rounded-md">
+        <button type="submit">Edit</button>
+      </form>
+      <form method="POST" action="/planets/{{ planet.id }}/delete" class="inline-flex items-center px-4 py-2 bg-red-500 text-white hover:bg-red-700 rounded-md">
+        <button type="submit">Delete</button>
+      </form>
+    </div>
+  </div>
+  <div class="w-full md:w-1/2">
+    {% if planet.extension is not null and planet.extension != "" %}
+    <img src="{{ planet.id }}{{ planet.extension }}" class="mx-auto max-w-full h-auto rounded-md">
+    {% endif %}
+  </div>
+</section>
